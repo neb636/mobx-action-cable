@@ -1,4 +1,4 @@
-# mobx-action-cable
+# MobX Action Cable
 Opinionated MobX state storage
 
 ```ts
