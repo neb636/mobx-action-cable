@@ -30,7 +30,7 @@ class Store<State> {
 
     private checkActionRegistered(registeredActions: string[], actionName: string) {
 
-        if (registeredActions.includes(actionName)) {
+        if (registeredActions.indexOf(actionName) > -1) {
             throw new Error(`Action: ${actionName} is already registered`);
         }
     }
