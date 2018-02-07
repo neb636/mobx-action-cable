@@ -1,6 +1,6 @@
 {
   "name": "mobx-action-cable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Opinionated MobX state storage",
   "main": "lib/index.js",
   "repository": "https://github.com/neb636/mobx-action-cable.git",
