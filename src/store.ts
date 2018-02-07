@@ -3,7 +3,6 @@ import {
 } from './interfaces';
 import { action, useStrict } from 'mobx';
 import compose from './compose';
-import * as _ from 'lodash';
 
 
 useStrict(true);
@@ -19,12 +18,19 @@ class Store<State> {
 
     connectActions<Actions>(actions: Actions): Actions {
 
-        return _.mapValues(actions, (action: any, name) => this.wrapAction(action, name));
+        return Object.keys(actions).reduce((connectedActions, actionName) => {
+            const wrappedAction =  this.wrapAction(action, actionName);
+
+            connectedActions[actionName] = wrappedAction;
+
+            return connectedActions;
+
+        }, <Actions>{});
     }
 
     private checkActionRegistered(registeredActions: string[], actionName: string) {
 
-        if (_.includes(registeredActions, actionName)) {
+        if (registeredActions.includes(actionName)) {
             throw new Error(`Action: ${actionName} is already registered`);
         }
     }

@@ -2,14 +2,14 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": false,
+    "allowJs": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": false,
     "removeComments": false,
     "outDir": "lib",
     "preserveConstEnums": true,
-    "target": "es2015",
+    "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node"
   },
