@@ -1,6 +1,6 @@
 # MobX Action Cable
 Opinionated MobX state storage
-
+#### Register store
 ```ts
 
 export class StoreState {
@@ -25,7 +25,7 @@ export {
 ```
 
 
-
+#### Action file
 ```ts
 
 const changePanel = (payload: { panel: string }) =>
@@ -42,8 +42,8 @@ const PanelActions = connectActionsToStore({
 export default PanelActions;
 ```
 
-
-```panel.ts
+#### Component
+```tsx
 import * as React from 'react';
 import Tabs from '../Common/Tabs/Tabs';
 import Pane from '../Common/Tabs/Pane';
