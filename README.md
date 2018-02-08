@@ -60,13 +60,13 @@ function Panel(props: Props) {
 
                 <Pane label='Project Browser'
                       disabled={storeState.selectionSetPending}
-                      panelId={BimPanels.ProjectBrowser}>
+                      panelId='Main'>
 
                     // ...content
                 </Pane>
 
                 <Pane label='Selection sets'
-                      panelId={BimPanels.SelectionSets}>
+                      panelId='Second'>
 
                     // ...content
                 </Pane>
