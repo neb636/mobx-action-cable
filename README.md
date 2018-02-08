@@ -44,11 +44,6 @@ export default PanelActions;
 
 #### Component
 ```tsx
-import * as React from 'react';
-import Tabs from '../Common/Tabs/Tabs';
-import Pane from '../Common/Tabs/Pane';
-import PanelActions from './panel-actions';
-import { injectAndObserve, StoreState } from '../../../register-store';
 
 type Props = { storeState?: StoreState };
 
