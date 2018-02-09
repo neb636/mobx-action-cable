@@ -7,14 +7,9 @@ export type ActionDefinition<State, Payload> = {
     actionMutator: ActionFunction<State, Payload>;
 };
 
-export type DispatchMiddleware = (store: { getState: any; dispatch: Dispatch }) => (next: Dispatch) => Dispatch;
-export type Dispatch = <Payload, State>(actionDefinition: ActionDefinition<State, Payload>) => void;
+export type DispatchMiddleware = (store: { getState: any; }) => (next: any) => <Payload, State>(actionDefinition: ActionDefinition<State, Payload>) => void;
+export type Dispatch = (store: { getState: any; }) => AppliedDispatch;
 
-
-export interface StoreInstance<State> {
-    connectActionsToStore: <Actions>(actions: Actions) => Actions;
-    getState: () => State;
-}
-
-
-export type StoreEnhancer = <State>(state: State, dispatch: Dispatch) => StoreInstance<State>;
+export type AppliedDispatch = <Payload, State>(actionDefinition: ActionDefinition<State, Payload>) => void;
+export type AppliedMiddleware = <State>(state: State, dispatch: Dispatch) => AppliedDispatch;
+export type ApplyMiddleware = <State>(...middleware: DispatchMiddleware[]) => AppliedMiddleware;
