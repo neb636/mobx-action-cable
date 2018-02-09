@@ -1,4 +1,5 @@
-# MobX Action Cable
+<img width="372" alt="screen shot 2018-02-08 at 9 44 56 pm" src="https://user-images.githubusercontent.com/4202152/36009267-722e2976-0d19-11e8-9b1a-0a883e6364a0.png">
+
 Opinionated MobX state storage
 #### Register store
 ```ts
