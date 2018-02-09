@@ -2,12 +2,12 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": false,
+    "declaration": true,
     "removeComments": false,
     "outDir": "lib",
     "preserveConstEnums": true,

@@ -1,0 +1,12 @@
+{
+  "name": "mobx-action-cable",
+  "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": ".*\\.test\\.(ts|tsx|js)$"
+}
