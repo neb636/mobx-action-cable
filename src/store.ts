@@ -1,4 +1,4 @@
-import { ActionFunction, AppliedDispatch } from './interfaces';
+import { ActionFunction, AppliedDispatch } from './types';
 import { action, useStrict } from 'mobx';
 
 

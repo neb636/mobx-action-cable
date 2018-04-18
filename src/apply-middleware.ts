@@ -1,4 +1,4 @@
-import { ApplyMiddleware, Dispatch, DispatchMiddleware } from './interfaces';
+import { AppliedDispatch, ApplyMiddleware, Dispatch, DispatchMiddleware } from './types';
 import compose from './compose';
 
 
@@ -11,8 +11,8 @@ const applyMiddleware: ApplyMiddleware = (...middleware: DispatchMiddleware[]) =
         const middlewareAPI = { getState };
         const chain = middleware.map(middleware => middleware(middlewareAPI));
 
-        return compose(...chain)(dispatch(middlewareAPI));
-    }
+        return <AppliedDispatch>compose(...chain)(dispatch(middlewareAPI));
+    };
 };
 
 

@@ -1,4 +1,4 @@
-import { ActionDefinition, Dispatch } from './interfaces';
+import { ActionDefinition, Dispatch } from './types';
 
 
 const dispatch: Dispatch = (store) => <State, Payload>(action: ActionDefinition<State, Payload>): void => {
