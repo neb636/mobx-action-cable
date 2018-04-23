@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - '9'
 install: true
+install:
+  - yarn global add typescript
+  - yarn
+
 cache: yarn
 script:
   - yarn test
