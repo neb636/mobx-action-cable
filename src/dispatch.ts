@@ -1,9 +1,11 @@
-import { ActionDefinition, Dispatch } from './interfaces';
+import { ActionDefinition, Dispatch } from './types';
 
 
-const dispatch: Dispatch = (store) => <State, Payload>(action: ActionDefinition<State, Payload>): void => {
+const dispatch: Dispatch = ({ getState }) => <State, Payload>(action: ActionDefinition<State, Payload>): void => {
+    const { payload } = action;
+    const state = getState();
 
-    action.actionMutator(action.payload)(store.getState());
+    action.actionMutator(payload)(state);
 };
 
 

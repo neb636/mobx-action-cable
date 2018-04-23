@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, storeLogger, computed, observable } from '../src';
+import { createStore, applyMiddleware, computed, observable } from '../src';
 import logger from 'redux-logger';
 
 let storeState, PaneActions;
@@ -17,7 +17,7 @@ describe('with middleware', () => {
 
     beforeEach(() => {
         storeState = new StoreState();
-        const { connectActionsToStore } = createStore(storeState, applyMiddleware(logger, storeLogger));
+        const { connectActionsToStore } = createStore(storeState, applyMiddleware(logger));
 
         const setActivePane = (payload: { pane: string }) => (state) => {
             state.activePane = payload.pane;

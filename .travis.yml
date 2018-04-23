@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - '9'
+install: true
+install:
+  - yarn global add typescript
+  - yarn
+
+cache: yarn
+script:
+  - yarn test
+  - yarn build
+deploy:
+  provider: npm
+  email: neb636@gmail.com
+  api_key:
+    secure: WesBCSR3PSbllFFJK8OIZY7mGkPOqLiS5AqcwBx2cbP0mBkVyqEoWYMsLmb19Z84sjyi5shRQV/UywERvlaq8O4QF3XYNXHc6YC1QUvf4JmUCy+gCqrAjVStpdU2xdY59vIvlIflABNodVmstwwObZqkB5hJaxrXDggef0RVd3Yb2kLcA5QRecgj5QuGzcl7r+Yr21xf0b5g3Vp1O3PIiF679vlqtCE50sE+sJXhkm9KMODICitB0iq36sGq1q89PcYANjunCAjlOKH6B4h+SY/0Dmsk7ItN+lwmiWmpNRhTDCWymF3saaXJowfdMB42Q9Lk1h7n867F/MTDbHdEDBPjHW1GFAOEs5dBhA0zq9oKxEyTtvF5COqahcQM7LDeg7itVLPtrtUkE9ct4TL2L8hG+QgixGxnSnizaCZGm4e85GbOTOURzF4a3DM176NivZ3gpiDvh+fCXExVtG3Kt3IDEHFBNYa4Is/UOuqQQURqc9YpqEJ+6qOVfFTWPNNtdLzSqs2fCoZ2d8CEsxOSKzyTqkksOCxg/yFH7UwvmirS5qR+ikvPXf8BXTBKituA04Dsg3VIJE4YiQKIxw9T6ZHEg+GsbkGP7ODE5NE+U4KgxutScPky+Db6/uUI9iKJ+uVgBkUysh7+IMmCzwHIeEyGeASpYdoy9QbIwNWG1CQ=
+  on:
+    branch: master

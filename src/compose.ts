@@ -1,6 +1,7 @@
+import { Compose } from './types';
 
 
-export default function compose(...funcs: any[]) {
+const compose: Compose = (...funcs: any[]) => {
 
     if (funcs.length === 0) {
         return (arg: any) => arg;
@@ -12,3 +13,6 @@ export default function compose(...funcs: any[]) {
 
     return funcs.reduce((a, b) => (...args: any[]) => a(b(...args)));
 };
+
+
+export default compose;

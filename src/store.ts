@@ -1,9 +1,7 @@
-import { ActionFunction, AppliedDispatch } from './interfaces';
-import { action, useStrict } from 'mobx';
+import { ActionFunction, AppliedDispatch } from './types';
+import { action, configure } from 'mobx';
 
-
-useStrict(true);
-
+configure({ enforceActions: 'strict' });
 
 export class Store<State> {
 
@@ -13,12 +11,10 @@ export class Store<State> {
                 public dispatch: AppliedDispatch) {
     }
 
-    connectActions<Actions>(actions: Actions): Actions {
+    connectActions<Actions>(actions: Actions, isAsync: boolean): Actions {
 
         return Object.keys(actions).reduce((connectedActions, actionName) => {
-            const wrappedAction =  this.wrapAction(actions[actionName], actionName);
-
-            connectedActions[actionName] = wrappedAction;
+            connectedActions[actionName] = this.wrapAction(actions[actionName], actionName, isAsync);
 
             return connectedActions;
         }, <Actions>{});
@@ -31,7 +27,7 @@ export class Store<State> {
         }
     }
 
-    private wrapAction<Action, Payload>(actionFunction: ActionFunction<State, Payload>, actionName: string) {
+    private wrapAction<Action, Payload>(actionFunction: ActionFunction<State, Payload>, actionName: string, isAsync: boolean) {
         this.checkActionRegistered(this.registeredActions, actionName);
         this.registeredActions.push(actionName);
 
@@ -41,7 +37,8 @@ export class Store<State> {
             this.dispatch({
                 type: actionName,
                 payload,
-                actionMutator: actionFunction
+                actionMutator: actionFunction,
+                isAsync
             });
         };
 
