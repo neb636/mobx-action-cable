@@ -1,13 +1,93 @@
 <img width="372" alt="screen shot 2018-02-08 at 9 44 56 pm" src="https://user-images.githubusercontent.com/4202152/36009267-722e2976-0d19-11e8-9b1a-0a883e6364a0.png">
 
 
-## What is MobX Action Cable?
+# What is MobX Action Cable?
 
 MobX Action Cable is a opinionated wrapper over MobX that handles state storage.
 
 - Redux style API (compliant with most redux middleware)
 - Importable no boilerplate typed actions
 
+
+### Differences between MobX Action Cable and standard MobX?
+
+#### Separation between State Definition and Actions
+
+
+
+##### Standard MobX
+
+```ts
+class Todos {
+    @observable todos: Todo[] = [];
+    @observable fetchError: any;
+
+    async loadTodos() {
+
+        try {
+            const { todos } = await RestApi.fetchTodos();
+
+            runInAction(() => {
+                this.todos = todos;
+            });
+        }
+        catch (error) {
+
+            runInAction(() => {
+                this.fetchError = error;
+            });
+        }
+    }
+}
+
+```
+
+
+##### MobX Action Cable
+
+```ts
+class TodosState {
+    @observable todos: Todo[] = [];
+    @observable fetchError: any;
+}
+
+
+const fetchTodos = () => ({ todosState }: State) => {
+
+    try {
+        const { todos } = await RestApi.fetchTodos();
+        TodosActions.setTodos({ todos });
+    }
+    catch (error) {
+        TodosActions.setFetchError({ error });
+    }
+};
+
+const TodosAsyncActions = connectAsyncActionsToStore({
+    fetchTodos
+});
+
+const setTodos = (payload: { todos: Todo[] }) => ({ todosState }: State) => {
+    todosState.todos = payload.todos;
+};
+
+const setFetchError = (payload: { error: any }) => ({ todosState }: State) => {
+    todosState.todos = payload.error;
+};
+
+const TodosActions = connectActionsToStore({
+    setTodos,
+    setFetchError
+});
+
+```
+
+
+### Differences between MobX Action Cable and standard MobX?
+
+
+
+## Example Code
 
 #### `register-store.ts`
 ```ts
