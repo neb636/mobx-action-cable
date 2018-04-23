@@ -13,11 +13,10 @@ MobX Action Cable is a opinionated wrapper over MobX that handles state storage.
 
 #### Separation between State Definition and Actions
 
-
-
-##### Standard MobX
-
 ```ts
+
+// Standard MobX
+
 class Todos {
     @observable todos: Todo[] = [];
     @observable fetchError: any;
@@ -27,12 +26,9 @@ class Todos {
     }
 }
 
-```
 
+// MobX Action Cable
 
-##### MobX Action Cable
-
-```ts
 class TodosState {
     @observable todos: Todo[] = [];
     @observable fetchError: any;
@@ -54,11 +50,8 @@ const TodosActions = connectActionsToStore({
 const TodosAsyncActions = connectActionsToStore({
     loadTodos
 });
+
 ```
-
-
-### Differences between MobX Action Cable and standard MobX?
-
 
 
 ## Example Code
