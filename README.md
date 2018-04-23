@@ -22,21 +22,8 @@ class Todos {
     @observable todos: Todo[] = [];
     @observable fetchError: any;
 
-    async loadTodos() {
-
-        try {
-            const { todos } = await RestApi.fetchTodos();
-
-            runInAction(() => {
-                this.todos = todos;
-            });
-        }
-        catch (error) {
-
-            runInAction(() => {
-                this.fetchError = error;
-            });
-        }
+    loadTodos() {
+        // ...
     }
 }
 
@@ -52,34 +39,21 @@ class TodosState {
 }
 
 
-const fetchTodos = () => ({ todosState }: State) => {
-
-    try {
-        const { todos } = await RestApi.fetchTodos();
-        TodosActions.setTodos({ todos });
-    }
-    catch (error) {
-        TodosActions.setFetchError({ error });
-    }
+const loadTodos = () => ({ todosState }: State) => {
+    // ...
 };
-
-const TodosAsyncActions = connectAsyncActionsToStore({
-    fetchTodos
-});
 
 const setTodos = (payload: { todos: Todo[] }) => ({ todosState }: State) => {
-    todosState.todos = payload.todos;
-};
-
-const setFetchError = (payload: { error: any }) => ({ todosState }: State) => {
-    todosState.todos = payload.error;
+    // ...
 };
 
 const TodosActions = connectActionsToStore({
-    setTodos,
-    setFetchError
+    setTodos
 });
 
+const TodosAsyncActions = connectActionsToStore({
+    loadTodos
+});
 ```
 
 
