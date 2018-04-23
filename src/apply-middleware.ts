@@ -9,9 +9,9 @@ const applyMiddleware: ApplyMiddleware = (...middleware: DispatchMiddleware[]) =
 
         // Make compliant with redux middleware api
         const middlewareAPI = { getState };
-        const chain = middleware.map(middleware => middleware(middlewareAPI));
+        const chain = middleware.map(middlewareFn => middlewareFn(middlewareAPI));
 
-        return <AppliedDispatch>compose(...chain)(dispatch(middlewareAPI));
+        return <AppliedDispatch> compose(...chain)(dispatch(middlewareAPI));
     };
 };
 

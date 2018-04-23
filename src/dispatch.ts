@@ -1,9 +1,12 @@
 import { ActionDefinition, Dispatch } from './types';
+import { toJS } from 'mobx';
 
 
-const dispatch: Dispatch = (store) => <State, Payload>(action: ActionDefinition<State, Payload>): void => {
+const dispatch: Dispatch = ({ getState }) => <State, Payload>(action: ActionDefinition<State, Payload>): void => {
+    const { payload, isAsync } = action;
+    const state = isAsync ? toJS(getState()) : getState();
 
-    action.actionMutator(action.payload)(store.getState());
+    action.actionMutator(payload)(state);
 };
 
 

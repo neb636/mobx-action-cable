@@ -1,3 +1,4 @@
+import { IReactComponent } from 'mobx-react';
 
 export type ActionFunction<State, Payload> = (payload: Payload) => (state: State) => void | Promise<void>;
 
@@ -5,7 +6,11 @@ export type ActionDefinition<State, Payload> = {
     type: string;
     payload: Payload;
     actionMutator: ActionFunction<State, Payload>;
+    isAsync: boolean;
 };
+
+export type Connect<State> = (mapStateToProps: (state: State) => any) => (UnwrappedComponent: IReactComponent<any>) => IReactComponent<any>;
+
 
 export type DispatchMiddleware = (store: { getState: any; }) => (next: any) => <Payload, State>(actionDefinition: ActionDefinition<State, Payload>) => void;
 export type Dispatch = (store: { getState: any; }) => AppliedDispatch;
@@ -19,7 +24,6 @@ export type Func0<R> = () => R;
 export type Func1<T1, R> = (a1: T1) => R;
 export type Func2<T1, T2, R> = (a1: T1, a2: T2) => R;
 export type Func3<T1, T2, T3, R> = (a1: T1, a2: T2, a3: T3, ...args: any[]) => R;
-
 
 export type Compose = {
     (): <R>(a: R) => R;

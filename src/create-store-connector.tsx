@@ -1,29 +1,22 @@
-import { observer, inject, IReactComponent } from 'mobx-react';
+import { observer } from 'mobx-react';
 import * as React from 'react';
+import { Connect } from './types';
 
-export function createStoreConnector(storeName: string) {
 
-    const injectAndObserve = <T extends IReactComponent>(component: T): T => {
-        return inject(storeName)(observer(component));
-    };
+export function createStoreConnector<State>(getState: () => State): Connect<State> {
 
-    function connect<State>(mapStateToProps: (state: State) => any) {
-        type MappedProps = ReturnType<typeof mapStateToProps>;
+    return mapStateToProps => UnwrappedComponent => {
 
-        return (WrappedComponent) => {
+        const WrappedClass = class extends React.Component {
 
-            const StateToPropsMerger = class extends React.Component {
+            render() {
+                const state = getState();
+                const mappedProps = mapStateToProps(state);
 
-                render() {
-                    const mappedProps = mapStateToProps(this.props[storeName]);
-
-                    return <WrappedComponent { ...mappedProps } { ...this.props } />;
-                }
-            };
-
-            return injectAndObserve(StateToPropsMerger);
+                return <UnwrappedComponent { ...mappedProps } { ...this.props } />;
+            }
         };
-    }
 
-    return { connect };
+        return observer(WrappedClass);
+    };
 }
