@@ -1,5 +1,5 @@
 import { toJS } from 'mobx';
-import * as _ from 'lodash';
+import { unique } from './helpers/unique';
 
 export function getStateJSON(state) {
 
@@ -38,5 +38,5 @@ function getLogKeys(module) {
         return key !== 'constructor' && !key.startsWith('_');
     });
 
-    return _.uniq([...objectKeys, ...protoKeys]);
+    return unique([...objectKeys, ...protoKeys]);
 }

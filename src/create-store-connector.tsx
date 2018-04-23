@@ -1,22 +1,25 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Connect } from './types';
+import { MapStateToProps } from './types';
 
 
-export function createStoreConnector<State>(getState: () => State): Connect<State> {
+export function createStoreConnector(getState: () => { [key: string]: any }) {
 
-    return mapStateToProps => UnwrappedComponent => {
+    return function<Component>(mapStateToProps: MapStateToProps): (UnwrappedComponent: Component) => Component {
 
-        const WrappedClass = class extends React.Component {
+        return (UnwrappedComponent: any) => {
 
-            render() {
-                const state = getState();
-                const mappedProps = mapStateToProps(state);
+            const WrappedClass: any = class extends React.Component {
 
-                return <UnwrappedComponent { ...mappedProps } { ...this.props } />;
-            }
+                render() {
+                    const state = getState();
+                    const mappedProps = mapStateToProps(state);
+
+                    return <UnwrappedComponent { ...mappedProps } { ...this.props } />;
+                }
+            };
+
+            return observer(WrappedClass);
         };
-
-        return observer(WrappedClass);
-    };
+    }
 }

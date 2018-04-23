@@ -1,6 +1,6 @@
 {
   "name": "mobx-action-cable",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Opinionated MobX state storage",
   "main": "lib/index.js",
   "typings": "lib/index",

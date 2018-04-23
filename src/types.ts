@@ -1,5 +1,3 @@
-import { IReactComponent } from 'mobx-react';
-
 export type ActionFunction<State, Payload> = (payload: Payload) => (state: State) => void | Promise<void>;
 
 export type ActionDefinition<State, Payload> = {
@@ -9,7 +7,12 @@ export type ActionDefinition<State, Payload> = {
     isAsync: boolean;
 };
 
-export type Connect<State> = (mapStateToProps: (state: State) => any) => (UnwrappedComponent: IReactComponent<any>) => IReactComponent<any>;
+export interface List<T> extends Array<T> {
+    [index: number]: T;
+    length: number;
+}
+
+export type MapStateToProps = (state: { [key: string]: any }) => { [key: string]: any };
 
 
 export type DispatchMiddleware = (store: { getState: any; }) => (next: any) => <Payload, State>(actionDefinition: ActionDefinition<State, Payload>) => void;
