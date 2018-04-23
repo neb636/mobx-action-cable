@@ -1,9 +1,13 @@
-# MobX Action Cable
+<img width="372" alt="screen shot 2018-02-08 at 9 44 56 pm" src="https://user-images.githubusercontent.com/4202152/36009267-722e2976-0d19-11e8-9b1a-0a883e6364a0.png">
 
 
-Opinionated MobX state storage
+What is MobX Action Cable?
 
-Observables powered by MobX with a Redux style api
+MobX Action Cable is a opinionated wrapper over MobX that handles state storage.
+
+- Redux style API (compliant with most redux middleware)
+- Importable no boilerplate typed actions
+
 
 #### `register-store.ts`
 ```ts
