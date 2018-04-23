@@ -4,9 +4,15 @@ Opinionated MobX state storage
 
 #### Register store
 ```ts
-import { createState, createStore } from 'mobx-action-cable';
+import { createState, createStore, getStateJSON } from 'mobx-action-cable';
 import GlobalState from '../store.global/state';
 import UserState from '../store.user/state';
+import { createLogger } from 'redux-logger'
+
+const logger = createLogger({
+    collapsed: true,
+    stateTransformer: getStateJSON
+});
 
 const mapStateNamespacesToState = () => {
 
@@ -22,7 +28,11 @@ const state = createState(mapStateNamespacesToState);
 export type State = ReturnType<typeof mapStateNamespacesToState>;
 
 
-const { connectActionsToStore, connectAsyncActionsToStore, connect } = createStore(state, applyMiddleware(...middleware));
+const {
+    connectActionsToStore,
+    connectAsyncActionsToStore,
+    connect
+} = createStore(state, applyMiddleware(logger));
 
 export {
     connect,
