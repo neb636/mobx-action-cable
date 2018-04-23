@@ -1,8 +1,11 @@
 # MobX Action Cable
+
+
 Opinionated MobX state storage
 
+Observables powered by MobX with a Redux style api
 
-#### Register store
+#### `register-store.ts`
 ```ts
 import { createState, createStore, getStateJSON } from 'mobx-action-cable';
 import GlobalState from '../store.global/state';
@@ -61,7 +64,7 @@ export class UserState {
 ```
 
 
-#### User Action file
+#### `store.user/actions.ts`
 
 ```ts
 import { connectActionsToStore, State } from './register-store';
@@ -83,7 +86,7 @@ const UserActions = connectActionsToStore({
 export default UserActions;
 ```
 
-#### User Async Action file
+#### `store.user/async-actions.ts`
 
 ```ts
 import { connectAsyncActionsToStore, State } from '../register-store';
@@ -115,7 +118,7 @@ export default UserAsyncActions;
 ```
 
 
-#### Component
+#### `UserProfileCard/UserProfileCard.tsx`
 ```tsx
 import { connect, State } from '../register-store.ts';
 import UserActions from '../store.user/actions.ts';
